@@ -14,6 +14,8 @@ export const appRoutes:Routes = [
     } },    
     { path: 'events/:id', component: EventDetailsComponent, canActivate:[EventRouterActivator] },   
     { path: '404', component: Error404Component }, 
-    { path: '', redirectTo: '/events', pathMatch: 'full' }
+    { path: '', redirectTo: '/events', pathMatch: 'full' },
+    // First path is name of the file and after the # the name of the class
+    { path: 'user', loadChildren: 'app/user/user.module#userModule' }
 ];
 
