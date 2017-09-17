@@ -1,3 +1,5 @@
+import { AuthService } from './user/auth.service';
+import { userModule } from './user/user.module';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,6 +23,7 @@ import { Error404Component } from './errors/404.component';
 @NgModule({
     imports: [ 
         BrowserModule,
+        userModule,
         RouterModule.forRoot(appRoutes)
     ],
     declarations: [
@@ -37,6 +40,7 @@ import { Error404Component } from './errors/404.component';
         ToastrService,
         EventRouterActivator,
         EventListResolver,
+        AuthService,
         { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
     ],
     bootstrap: [EventsAppComponent]
