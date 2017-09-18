@@ -1,7 +1,7 @@
 import { ISession } from './../shared/event.model';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../shared/event.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 
 
 @Component({
@@ -24,10 +24,17 @@ export class EventDetailsComponent implements OnInit {
 
     ngOnInit(): void {
 
-        const id = this.route.snapshot.params['id'];
+        // Because we use the navigation in the modal
+        // component we need to listen the params change
+        this.route.params.forEach((p:Params) => {
+            this.event = this.eventService.getEvent(+p['id']);
+            this.addMode = false;
+        });
 
-        // The + cast the string to a number
-        this.event = this.eventService.getEvent(+id);
+        // const id = this.route.snapshot.params['id'];
+
+        // // The + cast the string to a number
+        // this.event = this.eventService.getEvent(+id);
     }
 
     addSession(){
