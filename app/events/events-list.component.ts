@@ -1,7 +1,6 @@
 import { IEvent } from './shared/event.model';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/event.service';
-import { ToastrService } from '../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({    
@@ -14,11 +13,6 @@ import { ActivatedRoute } from '@angular/router';
             <event-thumbnail #thumbnail                     
                 [event]="event" (click)="handleThumbnailClick(event.name)">
             </event-thumbnail>                   
-                <!--
-                <event-thumbnail #thumbnail                     
-                    [event]="event" (eventClick)="handleEventClicked($event)">
-                </event-thumbnail>            
-                -->
             </div>
         </div>
         <!-- Demo for ref to child
@@ -35,8 +29,7 @@ export class EventsListComponent implements OnInit {
     events: IEvent;
 
     constructor(private eventService: EventService,
-                private route:ActivatedRoute,
-                private toastrService: ToastrService){        
+                private route:ActivatedRoute){        
     }
 
     ngOnInit(): void {
@@ -54,6 +47,6 @@ export class EventsListComponent implements OnInit {
     }
 
     handleThumbnailClick(event){
-        this.toastrService.info(event);
+
     }
 }

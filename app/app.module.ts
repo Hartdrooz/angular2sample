@@ -20,10 +20,12 @@ import {
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
-import { ToastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { RouterModule } from "@angular/router";
 import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
+
+declare const toastr:Toastr;
 
 @NgModule({
     imports: [ 
@@ -48,7 +50,7 @@ import { Error404Component } from './errors/404.component';
     ],
     providers: [
         EventService,
-        ToastrService,
+        { provide: TOASTR_TOKEN, useValue: toastr },
         EventRouterActivator,
         EventListResolver,
         AuthService,
