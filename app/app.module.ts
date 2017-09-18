@@ -1,3 +1,5 @@
+import { VoterService } from './events/event-details/voter.service';
+import { UpVoteComponent } from './events/event-details/upVote.component';
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
 import { SimpleModalComponent } from './common/simpleModal.component';
 import { JQ_TOKEN } from './common/jQuery.service';
@@ -52,10 +54,12 @@ declare const jQuery: Object;
         DurationPipe,
         ModalTriggerDirective,
         SimpleModalComponent,
+        UpVoteComponent,
         Error404Component
     ],
     providers: [
         EventService,
+        VoterService,
         { provide: TOASTR_TOKEN, useValue: toastr },
         { provide: JQ_TOKEN, useValue: jQuery },
         EventRouterActivator,
