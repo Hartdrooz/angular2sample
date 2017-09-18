@@ -15,6 +15,8 @@ import { ActivatedRoute } from "@angular/router";
 export class EventDetailsComponent implements OnInit {
     
     addMode: boolean;
+    filterBy: string = "all";
+    sortBy: string = 'votes';
     event: any;
 
     constructor (private eventService: EventService,
