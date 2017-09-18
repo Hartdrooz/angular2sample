@@ -1,3 +1,4 @@
+import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { EventsListComponent } from './events/events-list.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { Routes } from '@angular/router';
@@ -13,6 +14,7 @@ export const appRoutes:Routes = [
         events: EventListResolver
     } },    
     { path: 'events/:id', component: EventDetailsComponent, canActivate:[EventRouterActivator] },   
+    { path: 'events/session/new', component: CreateSessionComponent },
     { path: '404', component: Error404Component }, 
     { path: '', redirectTo: '/events', pathMatch: 'full' },
     // First path is name of the file and after the # the name of the class
