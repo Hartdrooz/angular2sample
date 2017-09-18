@@ -42,7 +42,7 @@
                    name="searchTerm"
                    class="form-control" placeholder="Search Sessions" >
             </div>
-            <button class="btn btn-default" modal-trigger>
+            <button class="btn btn-default" modal-trigger="searchResults">
                 Search
             </button>
         </form>
@@ -50,7 +50,7 @@
     </div>
 </div>
 
-<simple-modal title="Matching Sessions">
+<simple-modal elementId="searchResults" title="Matching Sessions">
     <div class="list-group">
         <a class="list-group-item" 
            [routerLink]="['/events',session.eventId]"
