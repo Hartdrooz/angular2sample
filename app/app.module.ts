@@ -1,3 +1,4 @@
+import { LocationValidatorDirective } from './events/locationValidator.directive';
 import { VoterService } from './events/event-details/voter.service';
 import { UpVoteComponent } from './events/event-details/upVote.component';
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
@@ -55,6 +56,7 @@ declare const jQuery: Object;
         ModalTriggerDirective,
         SimpleModalComponent,
         UpVoteComponent,
+        LocationValidatorDirective,
         Error404Component
     ],
     providers: [
