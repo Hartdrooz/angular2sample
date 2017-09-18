@@ -2,11 +2,12 @@ import { ISession } from './../shared/event.model';
 import { FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 
 
 @Component({
+    selector: 'create-session',
     templateUrl: 'app/events/event-details/create-session.component.html'
 })
 export class CreateSessionComponent implements OnInit {
@@ -18,6 +19,11 @@ export class CreateSessionComponent implements OnInit {
     presenter: FormControl;
     name:FormControl;
 
+    @Output()
+    saveNewSession = new EventEmitter();
+
+    @Output()
+    cancelAddSession = new EventEmitter();
 
     ngOnInit(): void {
         this.name = new FormControl('',Validators.required);
@@ -49,13 +55,23 @@ export class CreateSessionComponent implements OnInit {
             level: formValues.level,
             voters: []
         }
+
+        this.saveNewSession.emit(session);
+    }
+
+    cancel(){
+        this.cancelAddSession.emit();
     }
 
     // Function for custom validator
     private restrictedWord(words:string[]){
         return (control: FormControl) => {
 
+            const x = 5;
+
             if (!words) return null;
+
+            if (!control.value || control.value.length == 0) return null;
 
             const invalidWords = 
                 words.map(w => control.value.include(w) ? w : null)
