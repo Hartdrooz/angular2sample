@@ -76,6 +76,7 @@
     <session-list *ngIf="!addMode" 
                   [filterBy]="filterBy"
                   [sortBy]="sortBy"
+                  [eventId]="event?.id"
                   [sessions]="event?.sessions"></session-list>
 
     <create-session *ngIf="addMode" 

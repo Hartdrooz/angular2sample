@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs/Observable';
-import { Observable } from 'rxjs/Observable';
 import { IEvent, ISession } from './event.model';
 
 import { Injectable, EventEmitter } from "@angular/core";
