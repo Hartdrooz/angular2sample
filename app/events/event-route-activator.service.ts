@@ -13,6 +13,7 @@ export class EventRouterActivator implements CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+        
         const eventExits = !!this.eventService.getEvent(+route.params['id']);
 
         if (!eventExits){
