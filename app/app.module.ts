@@ -1,3 +1,4 @@
+import { EventResolver } from './events/event-resolver.service';
 import { LocationValidatorDirective } from './events/locationValidator.directive';
 import { VoterService } from './events/event-details/voter.service';
 import { UpVoteComponent } from './events/event-details/upVote.component';
@@ -12,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
 import { userModule } from './user/user.module';
 import { NgModule } from "@angular/core";
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {
@@ -39,6 +41,7 @@ declare const jQuery: Object;
         BrowserModule,
         userModule,
         FormsModule,
+        HttpModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes)
     ],
@@ -62,6 +65,7 @@ declare const jQuery: Object;
     providers: [
         EventService,
         VoterService,
+        EventResolver,
         { provide: TOASTR_TOKEN, useValue: toastr },
         { provide: JQ_TOKEN, useValue: jQuery },
         EventRouterActivator,

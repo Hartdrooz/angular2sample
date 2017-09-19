@@ -1,26 +1,42 @@
+import { Observable } from 'rxjs/Observable';
 import { IEvent, ISession } from './event.model';
 
 import { Injectable, EventEmitter } from "@angular/core";
 import { Subject } from 'rxjs/RX';
+import { Http,Response } from '@angular/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class EventService {
     
-    getEvents():Subject<IEvent[]>{
-
-        const subject = new Subject<IEvent[]>();
-
-        setTimeout(() => {
-          subject.next(EVENTS);
-          subject.complete();
-        },100);
-
-        return subject;
+    constructor(private http:Http){
     }
 
-    getEvent(id:number):IEvent{
+    getEvents():Observable<IEvent[]>{
+        
+        return this.http.get('/api/events').map((response:Response) => {
+            return <IEvent[]>response.json();
+        })
+        .catch(this.handleError);
 
-      return EVENTS.find(event => event.id === id);
+        // const subject = new Subject<IEvent[]>();
+
+        // setTimeout(() => {
+        //   subject.next(EVENTS);
+        //   subject.complete();
+        // },100);
+
+        // return subject;
+    }
+
+    getEvent(id:number):Observable<IEvent>{
+
+      return this.http.get('/api/events/' + id).map((response:Response) => {
+        return <IEvent>response.json();
+    })
+    .catch(this.handleError);
+
+      // return EVENTS.find(event => event.id === id);
     }
 
     saveEvent(event:any){
@@ -54,6 +70,10 @@ export class EventService {
         emitter.emit(results);
       },100);
       return emitter;
+    }
+
+    private handleError(error:Response){
+      return Observable.throw(error.statusText);
     }
 }
 

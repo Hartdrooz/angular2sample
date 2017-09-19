@@ -1,4 +1,4 @@
-import { ISession } from './../shared/event.model';
+import { ISession, IEvent } from './../shared/event.model';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../shared/event.service';
 import { ActivatedRoute, Params } from "@angular/router";
@@ -27,8 +27,17 @@ export class EventDetailsComponent implements OnInit {
         // Because we use the navigation in the modal
         // component we need to listen the params change
         this.route.params.forEach((p:Params) => {
-            this.event = this.eventService.getEvent(+p['id']);
+
+            // Because we resolve the data from the route
+            // we get it from the snapshot
+            this.event = this.route.snapshot.data['event'];
             this.addMode = false;
+            
+            
+            // this.eventService.getEvent(+p['id']).subscribe((event:IEvent) => {
+            //     this.event = event;
+            //     this.addMode = false;
+            // });
         });
 
         // const id = this.route.snapshot.params['id'];
