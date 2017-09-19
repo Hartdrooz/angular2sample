@@ -26,19 +26,19 @@ export class EventDetailsComponent implements OnInit {
 
         // Because we use the navigation in the modal
         // component we need to listen the params change
-        this.route.params.forEach((p:Params) => {
-
-            // Because we resolve the data from the route
-            // we get it from the snapshot
-            this.event = this.route.snapshot.data['event'];
+        // We use this because with use a resolver if not
+        // we use the code below
+        this.route.data.forEach(data => {
+            this.event = data['event'];
             this.addMode = false;
-            
-            
-            // this.eventService.getEvent(+p['id']).subscribe((event:IEvent) => {
-            //     this.event = event;
-            //     this.addMode = false;
-            // });
         });
+
+        // this.route.params.forEach((p:Params) => {            
+        //     // this.eventService.getEvent(+p['id']).subscribe((event:IEvent) => {
+        //     //     this.event = event;
+        //     //     this.addMode = false;
+        //     // });
+        // });
 
         // const id = this.route.snapshot.params['id'];
 
@@ -58,9 +58,9 @@ export class EventDetailsComponent implements OnInit {
 
         this.event.sessions.push(session);
 
-        this.eventService.updateEvent(this.event);
-
-        this.addMode = false;
+        this.eventService.saveEvent(this.event).subscribe(event => {
+            this.addMode = false;
+        });
     }
 
     cancelAddSession(){
